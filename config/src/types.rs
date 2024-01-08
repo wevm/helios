@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 use crate::utils::{bytes_deserialize, bytes_serialize};
 
 #[derive(Serialize, Deserialize, Debug, Default, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct ChainConfig {
     pub chain_id: u64,
     pub genesis_time: u64,
@@ -22,6 +23,7 @@ pub struct Forks {
 }
 
 #[derive(Serialize, Deserialize, Debug, Default, Clone)]
+#[serde(rename_all = "camelCase")]
 pub struct Fork {
     pub epoch: u64,
     #[serde(

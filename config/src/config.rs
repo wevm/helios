@@ -13,6 +13,7 @@ use std::str::FromStr;
 use std::{path::PathBuf, process::exit};
 
 #[derive(Deserialize, Debug, Default)]
+#[serde(rename_all = "camelCase")]
 pub struct Config {
     pub consensus_rpc: String,
     pub execution_rpc: String,
@@ -89,6 +90,7 @@ impl Config {
             rpc_bind_ip: self.rpc_bind_ip.unwrap_or(IpAddr::V4(Ipv4Addr::LOCALHOST)),
             rpc_port: self.rpc_port.unwrap_or(8545),
             consensus_rpc: Some(self.consensus_rpc.clone()),
+            execution_rpc: self.execution_rpc.clone(),
             default_checkpoint: self.default_checkpoint.clone(),
             chain: self.chain.clone(),
             forks: self.forks.clone(),

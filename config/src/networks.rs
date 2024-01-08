@@ -73,6 +73,7 @@ pub fn mainnet() -> BaseConfig {
         .unwrap(),
         rpc_port: 8545,
         consensus_rpc: Some("https://www.lightclientdata.org".to_string()),
+        execution_rpc: "https://cloudflare-eth.com".to_string(),
         chain: ChainConfig {
             chain_id: 1,
             genesis_time: 1606824023,
@@ -114,6 +115,7 @@ pub fn goerli() -> BaseConfig {
         .unwrap(),
         rpc_port: 8545,
         consensus_rpc: None,
+        execution_rpc: "https://rpc.ankr.com/eth_goerli".to_string(),
         chain: ChainConfig {
             chain_id: 5,
             genesis_time: 1616508000,
@@ -155,6 +157,7 @@ pub fn sepolia() -> BaseConfig {
         .unwrap(),
         rpc_port: 8545,
         consensus_rpc: None,
+        execution_rpc: "https://rpc.sepolia.org".to_string(),
         chain: ChainConfig {
             chain_id: 11155111,
             genesis_time: 1655733600,

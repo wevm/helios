@@ -1,17 +1,19 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use std::default::Default;
 use std::net::{IpAddr, Ipv4Addr};
 use std::path::PathBuf;
 
 use crate::types::{ChainConfig, Forks};
-use crate::utils::bytes_serialize;
+use crate::utils::{bytes_deserialize, bytes_serialize};
 
 /// The base configuration for a network.
-#[derive(Serialize)]
+#[derive(Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
 pub struct BaseConfig {
     pub rpc_bind_ip: IpAddr,
     pub rpc_port: u16,
     pub consensus_rpc: Option<String>,
+    pub execution_rpc: String,
     #[serde(
         deserialize_with = "bytes_deserialize",
         serialize_with = "bytes_serialize"
@@ -31,6 +33,7 @@ impl Default for BaseConfig {
             rpc_bind_ip: IpAddr::V4(Ipv4Addr::LOCALHOST), // Default to "127.0.0.1"
             rpc_port: 0,
             consensus_rpc: None,
+            execution_rpc: Default::default(),
             default_checkpoint: vec![],
             chain: Default::default(),
             forks: Default::default(),
